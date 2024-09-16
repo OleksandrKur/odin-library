@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Library</h1>
+        </div>
+    </header>
+    <main>
+        <div class="inputs">
+            <h2>Add new book</h2>
+
+            <form>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div class="form-group">Author<label for="author"></label>
+                    <input type="text" name="author" id="author" required>
+                </div>
+                <div class="form-group">
+                    <label for="pages">Number of pages</label><input min="0" max="10000" type="number" name="pages" id="pages" required>
+                </div>
+                <div class="form-group">
+                    <label for="read">Read?</label><input type="checkbox" name="read" id="read">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Add book</button>
+                </div>
+            </form>
+        </div>
+        <div class="result">
+            <h2>Book list</h2>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th># of pages</th>
+                    <th>Read?</th>
+                </tr>
+                <tr>
+                    <td>The Sun Also Rises</td>
+                    <td>E. Hemingway</td>
+                    <td>224</td>
+                    <td>Yes</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
