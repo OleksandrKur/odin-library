@@ -31,25 +31,24 @@
                     <label for="read">Read?</label><input type="checkbox" name="read" id="read">
                 </div>
                 <div class="form-group">
-                    <button type="submit">Add book</button>
+                    <button type="submit" id="sumbit-button">Add book</button>
                 </div>
             </form>
         </div>
         <div class="result">
             <h2>Book list</h2>
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th># of pages</th>
-                    <th>Read?</th>
-                </tr>
-                <tr>
-                    <td>The Sun Also Rises</td>
-                    <td>E. Hemingway</td>
-                    <td>224</td>
-                    <td>Yes</td>
-                </tr>
+            <table id="book-list">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th># of pages</th>
+                        <th>Read?</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
             </table>
         </div>
     </main>
