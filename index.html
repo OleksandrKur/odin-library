@@ -28,7 +28,7 @@
                     <label for="pages">Number of pages</label><input min="0" max="10000" type="number" name="pages" id="pages" required>
                 </div>
                 <div class="form-group">
-                    <label for="read">Read?</label><input type="checkbox" name="read" id="read">
+                    <label for="read">Finished?</label><input type="checkbox" name="read" id="read">
                 </div>
                 <div class="form-group">
                     <button type="submit" id="sumbit-button">Add book</button>
@@ -39,15 +39,17 @@
             <h2>Book list</h2>
             <table id="book-list">
                 <thead>
-                    <tr>
+                    <tr class="table-header">
                         <th>Title</th>
                         <th>Author</th>
                         <th># of pages</th>
-                        <th>Read?</th>
+                        <th>Finished?</th>
+                        <th>Toggle read status</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    <tr class="table-row"><td>Test book</td><td>Test Author</td><td>123</td><td>yes</td><td><button class="changeStatus" data-id="1">🔄</button></td><td><button class="deleteBook" data-id="1">🚮</button></td><td>0000</td></tr>
                 </tbody>
             </table>
         </div>
