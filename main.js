@@ -34,67 +34,33 @@ function addBookToLibrary(book) {
     let tableRow = document.createElement("tr");
     tableRow.classList.add("table-row");
     table.appendChild(tableRow);
-    addTitleCell(lastBook);
-    addAuthorCell(lastBook);
-    addPagesCell(lastBook);
-    addReadStatusCell(lastBook);
-    addChangeStatusCell(lastBook);
-    addDeleteButtonCell(lastBook);
+    addCell(lastBook.title);
+    addCell(lastBook.author);
+    addCell(lastBook.pages);
+    addCell(lastBook.read ? "Finished" : "Not finished");
+    createButton("🔄", lastBook.id, "changeStatus", changeStatus);
+    createButton("🚮", lastBook.id, "deleteBook", removeBook);
 
-    function addTitleCell(lastBook){
-      let titleCell = document.createElement("td");
-      titleCell.textContent = lastBook.title;
-      table.lastChild.appendChild(titleCell);
+
+    function addCell(text){
+      let newCell = document.createElement("td");
+      newCell.textContent = text;
+      table.lastChild.appendChild(newCell);
     }
-    function addAuthorCell(lastBook){
-      let authorCell = document.createElement("td");
-      authorCell.textContent = lastBook.author;
-      table.lastChild.appendChild(authorCell);
-    }
-    function addPagesCell(lastBook){
-      let pagesCell = document.createElement("td");
-      pagesCell.textContent = lastBook.pages;
-      table.lastChild.appendChild(pagesCell);
-    }
-    function addReadStatusCell(lastBook){
-      let readStatusCell = document.createElement("td");
-      readStatusCell.textContent = lastBook.read? "yes" : "no";
-      table.lastChild.appendChild(readStatusCell);
-      
-    }
-    function addChangeStatusCell(lastBook){
-      let changeStatusCell = document.createElement("td");
-      let changeStatusButton = document.createElement("button");
-      changeStatusButton.classList.add("changeStatus");
-      changeStatusButton.innerHTML = "🔄"
-      changeStatusButton.setAttribute("data-id", lastBook.id)
-      changeStatusButton.onclick = function(event){
-        changeStatus(event.target);
+
+    function createButton(text, id, cssClass, buttonFunction){
+      let buttonCell = document.createElement("td");
+      let button = document.createElement("button");
+      button.classList.add(cssClass);
+      button.classList.add("button-small");
+      button.innerHTML = text;
+      button.setAttribute("data-id", id)
+      button.onclick = function(event){
+        buttonFunction(event.target);
         event.preventDefault();
       }
-      table.lastChild.appendChild(changeStatusCell);
-      changeStatusCell.appendChild(changeStatusButton);
-    }
-    function addDeleteButtonCell(lastBook){
-      let deleteBookCell = document.createElement("td");
-      let deleteBookButton = document.createElement("button");
-      deleteBookButton.classList.add("deleteBook");
-      deleteBookButton.innerHTML = "🚮"
-      deleteBookButton.setAttribute("data-id", lastBook.id);
-      deleteBookButton.onclick = function(event){
-        removeBook(event.target);
-        
-      }
-      table.lastChild.appendChild(deleteBookCell);
-      deleteBookCell.appendChild(deleteBookButton);
-    }
-
-    //                                          DELETE
-    function addIdCell(lastBook){
-      let idCell = document.createElement("td");
-      idCell.textContent = lastBook.id;
-      table.lastChild.appendChild(idCell);
-      table.lastChild.appendChild(idCell);
+      table.lastChild.appendChild(buttonCell);
+      buttonCell.appendChild(button);
     }
   }
   
@@ -108,6 +74,7 @@ function processForm(){
   const read = readInput.checked ? true : false;
 
   if (title === "" || author === "" || pages === ""){
+    alert("Need to fill all inputs");
     return;
   }
 
@@ -125,11 +92,9 @@ function clearForm(){
 }
 
 function removeBook(removeButton){
-
   let currentBookId = Number(removeButton.getAttribute("data-id"));
   
   let currentBookIndex = myLibrary.findIndex((element) => element.id === currentBookId); 
-  console.log(currentBookIndex);
   myLibrary.splice(currentBookIndex, 1);
 
   let currentRow = removeButton.parentElement.parentElement;
@@ -141,6 +106,5 @@ function changeStatus(changeButton){
   let currentBookIndex = myLibrary.findIndex((element) => element.id === currentBookId);
   myLibrary[currentBookIndex].read = myLibrary[currentBookIndex].read == true ? false : true;
   let readStatusCell = changeButton.parentElement.previousSibling;
-  readStatusCell.textContent = readStatusCell.textContent == "yes" ? "no" : "yes"
-  console.log(myLibrary[currentBookIndex]);
+  readStatusCell.textContent = readStatusCell.textContent == "Not finished" ? "Finished" : "Not finished"
 }
