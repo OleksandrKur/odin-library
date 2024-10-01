@@ -9,13 +9,14 @@ const changeStatusButtons = document.getElementsByClassName("changeStatus");
 const deleteEntryButtons = document.getElementsByClassName("deleteBook");
 let idCount = 1;
 
-function Book(title, author, pages, read) {
-  
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.id = idCount++;
+class Book{
+  constructor(title, author, pages, read){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.id = idCount++;
+  }
 }
 
 submitButton.addEventListener("click", (event) => {
